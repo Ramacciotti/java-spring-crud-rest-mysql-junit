@@ -13,8 +13,8 @@
     <groupId>com.ramacciotti</groupId>
     <artifactId>crud</artifactId>
     <version>0.0.1</version>
-    <name>java-spring-react-typescript-axios-mysql</name>
-    <description>This project aims to consume data from an external api</description>
+    <name>java-spring-crud-rest-mysql</name>
+    <description>This is a simple CRUD application that will search interact with a Mysql database. </description>
 
     <properties>
         <java.version>17</java.version>
