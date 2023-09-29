@@ -14,12 +14,14 @@ import lombok.Setter;
 @EqualsAndHashCode
 @AllArgsConstructor
 @NoArgsConstructor
-public class PersonDTO {
+public class ClientDTO {
 
-    @NonNull
     private String name;
 
-    @NonNull
-    private String cpf;
+    private Long cpf;
+
+    private Long age;
+
+    private Long phone;
 
 }

@@ -40,8 +40,7 @@ public class OpenApiConfig {
     public OpenAPI configure() {
         return new OpenAPI()
                 .info(info())
-                .servers(servers())
-                .tags(tags());
+                .servers(servers());
     }
 
     private Info info() {
@@ -49,15 +48,6 @@ public class OpenApiConfig {
                 .title(name)
                 .version(version)
                 .description(buildDescription());
-    }
-
-    private List<Tag> tags() {
-
-        Tag personController = new Tag();
-        personController.setName("Person Controller");
-
-        return List.of(personController);
-
     }
 
     private List<Server> servers() {
