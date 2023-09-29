@@ -68,7 +68,7 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     @Transactional
-    public ClientDTO getClientByCpf(Long cpf) {
+    public ClientDTO getClientByCpf(String cpf) {
 
         Client client = clientRepository.findClientByCpf(cpf);
 
@@ -92,7 +92,7 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     @Transactional
-    public ClientDTO putClientByCpf(ClientDTO clientDTO, Long cpf) {
+    public ClientDTO putClientByCpf(ClientDTO clientDTO, String cpf) {
 
         log.info("** Trying to find this client on database...");
 
@@ -134,7 +134,7 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     @Transactional
-    public void deleteClientByCpf(Long cpf) {
+    public void deleteClientByCpf(String cpf) {
 
         log.info("** Trying to find this client on database...");
 

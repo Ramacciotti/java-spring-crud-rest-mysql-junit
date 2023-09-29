@@ -18,10 +18,10 @@ public class ClientDTO {
 
     private String name;
 
-    private Long cpf;
+    private String cpf;
 
     private Long age;
 
-    private Long phone;
+    private String phone;
 
 }

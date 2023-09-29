@@ -6,9 +6,9 @@ public interface ClientService {
 
     ClientDTO createClient(ClientDTO clientDTO);
 
-    ClientDTO getClientByCpf(Long cpf);
+    ClientDTO getClientByCpf(String cpf);
 
-    ClientDTO putClientByCpf(ClientDTO clientDTO, Long cpf);
+    ClientDTO putClientByCpf(ClientDTO clientDTO, String cpf);
 
-    void deleteClientByCpf(Long cpf);
+    void deleteClientByCpf(String cpf);
 }

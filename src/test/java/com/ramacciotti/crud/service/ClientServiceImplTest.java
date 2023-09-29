@@ -150,26 +150,26 @@ class ClientServiceImplTest {
     void getClientByCpf() throws IOException {
 
         Client client = getJsonFileAsObject("client.json", Client.class);
-        when(clientRepository.findClientByCpf(11111111111L)).thenReturn(client);
+        when(clientRepository.findClientByCpf("11111111111")).thenReturn(client);
 
-        ClientDTO clientDTO = clientService.getClientByCpf(11111111111L);
+        ClientDTO clientDTO = clientService.getClientByCpf("11111111111");
 
-        verify(clientRepository, times(1)).findClientByCpf(11111111111L);
+        verify(clientRepository, times(1)).findClientByCpf("11111111111");
 
-        Assertions.assertEquals(11111111111L, clientDTO.getCpf());
+        Assertions.assertEquals("11111111111", clientDTO.getCpf());
         Assertions.assertEquals("Mariana Ramacciotti", clientDTO.getName());
         Assertions.assertEquals(11L, clientDTO.getAge());
-        Assertions.assertEquals(11111111111L, clientDTO.getPhone());
+        Assertions.assertEquals("11111111111", clientDTO.getPhone());
 
     }
 
     @Test
     void getClientByCpfNotFound() {
 
-        when(clientRepository.findClientByCpf(11111111111L)).thenReturn(null);
+        when(clientRepository.findClientByCpf("11111111111")).thenReturn(null);
 
         ItemNotFoundException runtimeException = Assertions.assertThrows(ItemNotFoundException.class, () -> {
-            clientService.getClientByCpf(11111111111L);
+            clientService.getClientByCpf("11111111111");
         });
 
         Assertions.assertEquals(runtimeException.getMessage(), "client_not_found");
@@ -183,11 +183,11 @@ class ClientServiceImplTest {
         ClientDTO userRequest = getJsonFileAsObject("clientDTO.json", ClientDTO.class);
 
         Client repositoryResponse = getJsonFileAsObject("client.json", Client.class);
-        when(clientRepository.findClientByCpf(11111111111L)).thenReturn(repositoryResponse);
+        when(clientRepository.findClientByCpf("11111111111")).thenReturn(repositoryResponse);
 
-        ClientDTO actualResponse = clientService.putClientByCpf(userRequest, 11111111111L);
+        ClientDTO actualResponse = clientService.putClientByCpf(userRequest, "11111111111");
 
-        verify(clientRepository, times(1)).findClientByCpf(11111111111L);
+        verify(clientRepository, times(1)).findClientByCpf("11111111111");
         verify(clientRepository, times(1)).save(any());
 
         Assertions.assertEquals("Mariana Ramacciotti", actualResponse.getName());
@@ -200,10 +200,10 @@ class ClientServiceImplTest {
 
         ClientDTO userRequest = getJsonFileAsObject("clientDTO.json", ClientDTO.class);
 
-        when(clientRepository.findClientByCpf(11111111111L)).thenReturn(null);
+        when(clientRepository.findClientByCpf("11111111111")).thenReturn(null);
 
         ItemNotFoundException runtimeException = Assertions.assertThrows(ItemNotFoundException.class, () -> {
-            clientService.putClientByCpf(userRequest, 11111111111L);
+            clientService.putClientByCpf(userRequest, "11111111111");
         });
 
         Assertions.assertEquals(runtimeException.getMessage(), "client_not_found");
@@ -216,12 +216,12 @@ class ClientServiceImplTest {
         ClientDTO userRequest = getJsonFileAsObject("clientDTO.json", ClientDTO.class);
 
         Client repositoryResponse = getJsonFileAsObject("client.json", Client.class);
-        when(clientRepository.findClientByCpf(11111111111L)).thenReturn(repositoryResponse);
+        when(clientRepository.findClientByCpf("11111111111")).thenReturn(repositoryResponse);
 
         doThrow(new RuntimeException("exception")).when(clientRepository).save(any());
 
         Exception exception = Assertions.assertThrows(Exception.class, () -> {
-            clientService.putClientByCpf(userRequest, 11111111111L);
+            clientService.putClientByCpf(userRequest, "11111111111");
         });
 
         Assertions.assertEquals(exception.getMessage(), "exception");
@@ -233,22 +233,22 @@ class ClientServiceImplTest {
     void deleteClientByCpf() throws IOException {
 
         Client repositoryResponse = getJsonFileAsObject("client.json", Client.class);
-        when(clientRepository.findClientByCpf(11111111111L)).thenReturn(repositoryResponse);
+        when(clientRepository.findClientByCpf("11111111111")).thenReturn(repositoryResponse);
 
-        clientService.deleteClientByCpf(11111111111L);
+        clientService.deleteClientByCpf("11111111111");
 
-        verify(clientRepository, times(1)).findClientByCpf(11111111111L);
-        verify(clientRepository, times(1)).deleteClientByCpf(11111111111L);
+        verify(clientRepository, times(1)).findClientByCpf("11111111111");
+        verify(clientRepository, times(1)).deleteClientByCpf("11111111111");
 
     }
 
     @Test
     void deleteClientByCpfNotFound() {
 
-        when(clientRepository.findClientByCpf(11111111111L)).thenReturn(null);
+        when(clientRepository.findClientByCpf("11111111111")).thenReturn(null);
 
         ItemNotFoundException runtimeException = Assertions.assertThrows(ItemNotFoundException.class, () -> {
-            clientService.deleteClientByCpf(11111111111L);
+            clientService.deleteClientByCpf("11111111111");
         });
 
         Assertions.assertEquals(runtimeException.getMessage(), "client_not_found");

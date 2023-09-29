@@ -64,9 +64,9 @@ class ClientControllerTest {
         var actualResponse = mapper.readValue(response.getResponse().getContentAsString(), ClientDTO.class);
 
         Assertions.assertEquals("Mariana Ramacciotti", actualResponse.getName());
-        Assertions.assertEquals(11111111111L, actualResponse.getCpf());
+        Assertions.assertEquals("11111111111", actualResponse.getCpf());
         Assertions.assertEquals(11L, actualResponse.getAge());
-        Assertions.assertEquals(11111111111L, actualResponse.getPhone());
+        Assertions.assertEquals("11111111111", actualResponse.getPhone());
 
     }
 
@@ -74,7 +74,7 @@ class ClientControllerTest {
     void getClientByCpf() throws Exception {
 
         ClientDTO clientDTO = getJsonFileAsObject("clientDTO.json", ClientDTO.class);
-        when(clientService.getClientByCpf(11111111111L)).thenReturn(clientDTO);
+        when(clientService.getClientByCpf("11111111111")).thenReturn(clientDTO);
 
         var response = mockMvc.perform(MockMvcRequestBuilders
                         .get("/v1/client/11111111111")
@@ -85,9 +85,9 @@ class ClientControllerTest {
         var actualResponse = mapper.readValue(response.getResponse().getContentAsString(), ClientDTO.class);
 
         Assertions.assertEquals("Mariana Ramacciotti", actualResponse.getName());
-        Assertions.assertEquals(11111111111L, actualResponse.getCpf());
+        Assertions.assertEquals("11111111111", actualResponse.getCpf());
         Assertions.assertEquals(11L, actualResponse.getAge());
-        Assertions.assertEquals(11111111111L, actualResponse.getPhone());
+        Assertions.assertEquals("11111111111", actualResponse.getPhone());
 
     }
 
@@ -100,7 +100,7 @@ class ClientControllerTest {
         when(clientService.putClientByCpf(any(), any())).thenReturn(clientDTO);
 
         var response = mockMvc.perform(MockMvcRequestBuilders
-                        .put("/v1/client/" + 11111111111L)
+                        .put("/v1/client/" + "11111111111")
                         .content(userRequest)
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
@@ -109,9 +109,9 @@ class ClientControllerTest {
         var actualResponse = mapper.readValue(response.getResponse().getContentAsString(), ClientDTO.class);
 
         Assertions.assertEquals("Mariana Ramacciotti", actualResponse.getName());
-        Assertions.assertEquals(11111111111L, actualResponse.getCpf());
+        Assertions.assertEquals("11111111111", actualResponse.getCpf());
         Assertions.assertEquals(22L, actualResponse.getAge());
-        Assertions.assertEquals(11111111111L, actualResponse.getPhone());
+        Assertions.assertEquals("11111111111", actualResponse.getPhone());
 
     }
 

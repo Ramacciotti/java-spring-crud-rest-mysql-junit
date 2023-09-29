@@ -44,7 +44,7 @@ public class ClientController {
     @GetMapping(path = "/client/{cpf}")
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "Uses cpf to locate an specific client at the database")
-    public ClientDTO getClientByCpf(@PathVariable("cpf") Long cpf) {
+    public ClientDTO getClientByCpf(@PathVariable("cpf") String cpf) {
         log.info(">> getClientByCpf()");
         ClientDTO result = clientService.getClientByCpf(cpf);
         log.info("<< getClientByCpf()");
@@ -54,7 +54,7 @@ public class ClientController {
     @PutMapping(path = "/client/{cpf}")
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "Uses cpf to update an specific client at the database")
-    public ClientDTO updateClientByCpf(@Valid @RequestBody ClientDTO clientDTO, @PathVariable("cpf") Long cpf) {
+    public ClientDTO updateClientByCpf(@Valid @RequestBody ClientDTO clientDTO, @PathVariable("cpf") String cpf) {
         log.info(">> getClientByCpf()");
         ClientDTO result = clientService.putClientByCpf(clientDTO, cpf);
         log.info("<< getClientByCpf()");
@@ -64,7 +64,7 @@ public class ClientController {
     @DeleteMapping(path = "/client/{cpf}")
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "Uses an cpf to delete an specific client at the database")
-    public void deleteClientByCpf(@PathVariable("cpf") Long cpf) {
+    public void deleteClientByCpf(@PathVariable("cpf") String cpf) {
         log.info(">> deleteClientByCpf()");
         clientService.deleteClientByCpf(cpf);
         log.info("<< deleteClientByCpf()");
