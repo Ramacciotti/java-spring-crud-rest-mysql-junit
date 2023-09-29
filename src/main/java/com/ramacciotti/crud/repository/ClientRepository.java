@@ -9,6 +9,6 @@ public interface ClientRepository extends JpaRepository<Client, Long> {
 
     Client findClientByCpf(Long cpf);
 
-    void deleteByCpf(Long cpf);
+    void deleteClientByCpf(Long cpf);
 
 }

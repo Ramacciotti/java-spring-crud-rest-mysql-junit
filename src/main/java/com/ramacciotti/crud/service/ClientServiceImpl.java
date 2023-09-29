@@ -29,25 +29,40 @@ public class ClientServiceImpl implements ClientService {
 
         verifyFields(clientDTO);
 
-        Client client = convertToClient(clientDTO);
+        log.info("** Checking if this client already exists on database...");
 
-        try {
+        Client client = clientRepository.findClientByCpf(clientDTO.getCpf());
 
-            log.info("** Trying to save this client on database...");
+        if (client != null) {
 
-            client = clientRepository.save(client);
+            log.error("## Ops! This client already exists!");
 
-            log.info("** Saved successfully!");
+            throw new RuntimeException("client_already_exists");
 
-        } catch (Exception exception) {
+        } else {
 
-            log.info("## Ops! There was an error: {}", exception.getMessage());
+            client = convertToClient(clientDTO);
 
-            throw new RuntimeException(exception.getMessage());
+            try {
+
+                log.info("** Trying to save this client on database...");
+
+                client = clientRepository.save(client);
+
+                log.info("** Saved successfully!");
+
+            } catch (Exception exception) {
+
+                log.info("## Ops! There was an error: {}", exception.getMessage());
+
+                throw new RuntimeException(exception.getMessage());
+
+            }
+
+            return convertToClientDTO(client);
+
 
         }
-
-        return convertToClientDTO(client);
 
     }
 
@@ -137,7 +152,7 @@ public class ClientServiceImpl implements ClientService {
 
             log.info("** Deleting this client...");
 
-            clientRepository.deleteByCpf(client.getCpf());
+            clientRepository.deleteClientByCpf(client.getCpf());
 
             log.info("** Client deleted!");
 
@@ -174,26 +189,18 @@ public class ClientServiceImpl implements ClientService {
 
         if (clientDTO.getName() != null) {
             client.setName(clientDTO.getName());
-        } else {
-            client.setName(client.getName());
         }
 
         if (clientDTO.getCpf() != null) {
             client.setCpf(clientDTO.getCpf());
-        } else {
-            client.setCpf(client.getCpf());
         }
 
         if (clientDTO.getAge() != null) {
             client.setAge(clientDTO.getAge());
-        } else {
-            client.setAge(client.getAge());
         }
 
         if (clientDTO.getPhone() != null) {
             client.setPhone(clientDTO.getPhone());
-        } else {
-            client.setPhone(client.getPhone());
         }
 
     }
