@@ -55,9 +55,9 @@ public class ClientController {
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "Uses cpf to update an specific client at the database")
     public ClientDTO updateClientByCpf(@Valid @RequestBody ClientDTO clientDTO, @PathVariable("cpf") String cpf) {
-        log.info(">> getClientByCpf()");
+        log.info(">> putClientByCpf()");
         ClientDTO result = clientService.putClientByCpf(clientDTO, cpf);
-        log.info("<< getClientByCpf()");
+        log.info("<< putClientByCpf()");
         return result;
     }
 

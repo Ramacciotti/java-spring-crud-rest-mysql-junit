@@ -13,7 +13,7 @@
     <groupId>com.ramacciotti</groupId>
     <artifactId>crud</artifactId>
     <version>0.0.1</version>
-    <name>java-spring-crud-rest-mysql</name>
+    <name>java-spring-crud-rest-mysql-junit</name>
     <description>This is a simple CRUD application that will search interact with a Mysql database. </description>
 
     <properties>
