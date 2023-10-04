@@ -4,4 +4,4 @@ This is a simple CRUD application that will search interact with a Mysql databas
 
 ## Video
 
-[![Watch the video](https://www.youtube.com/watch?v=gsyYjPRs53w&t=1s&ab_channel=MarianaRamacciotti)
+[![Watch the video](https://img.youtube.com/vi/gsyYjPRs53w/maxresdefault.jpg)](https://youtu.be/gsyYjPRs53w)
